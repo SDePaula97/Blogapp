@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 
-const blogSchema = new mongoose.Schema({
-    username: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true},
+const userSchema = new mongoose.Schema({
+    username: {type: String, required: true, unique: true},
+    password: {type: String, required: true, minlength:3, maxlength: 12},
+    email: {type: String, required: true, unique: true},
    
 },
-{ timestamps: { createdAt: 'created_at'} })
+{ timestamps: { Created: 'created_at'} })
 
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('userModel', userSchema)

@@ -1,74 +1,79 @@
-const express = require('express')
-const BlogModel = require('../models/BlogSchema')
+const express = require('express');
+const BlogModel = require('../models/BlogSchema');
 
-const router = express.Router()
+const router = express.Router();
 
 // GET: all Blogs
-router.get('/', async (req,res) => {
+router.get('/', async (req, res) => {
     try{
         const blogs = await BlogModel.find({}) 
-res.send(blogs)
-    } catch (error){
+        res.render('blog/Blogs', {BlogModel: blogs})
+    } 
+    catch (error) {
     console.log(error);
     res.status(403).send('Cannot create')
     }
+});
+router.get('/new', (req,res) => {
+    res.render('blog/New')
 })
-// GET: Blog by ID
-router.get('/:id', async (req,res) => {
+
+// GET: blog by ID
+router.get('/:id', async (req, res) => {
     try {
-        const blog = await BlogModel.findById()
-        res.send(blog)
-    } catch (error) {
+        const blogs = await BlogModel.findById(req.params.id)
+        res.render('blog/Show', {BlogModel:blogs})
+    } 
+    catch (error) {
         console.log(error);
-        res.status(403).send('Cannot create')
+        res.status(403).send('Cannot create');
     }
-})
+});
+router.get('/:id/edit', async (req,res) => {
+    try {
+     const blogs = await BlogModel.findById(req.params.id)
+        res.render(`blog/edit`, {BlogModel:blogs})
+    }
+    catch(e){
+        console.log(e);
+        res.status(403).send(`Cannot create`);
+    }
+});
 
-// CREATE: a New Blog
+// POST : create a New Blog
 router.post('/', async (req,res) => {
-    try{
-        const newBlog = await BlogModel.create(req.body)
-        res.send(newBlog)
-    } catch (error){
+    try {
+        await BlogModel.create(req.body)
+        res.redirect('/blog')
+        //res.send('Blog successfully created!')
+    } catch (error) {
         console.log(error);
         res.status(403).send('Cannot create')
+}
+});
 
-    }
-   
-})
-
-// PUT: by ID
-router.put('/:id', async (req,res) => {
-    try{
-        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id, req.body,
-            {'returnDocument': "after"})
-        res.send(updatedBlog)
-    } catch (error) {
+// PUT: update by ID
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id, req.body,{'returnDocument': "after"})
+        res.redirect('/blog')
+    } 
+    catch (error) {
         console.log(error);
-        res.status(403).send('Cannot put')
-    
-   }
-})
+        res.status(403).send('Cannot create')
+}
+});
 
-// DELETE
-
-router.delete('/:id', ( async (req,res) => {
-    try{
+// DELETE : remove by ID
+router.delete('/:id', async (req, res) => {
+    try {
       const deletedBlog =  await BlogModel.findByIdAndRemove(req.params.id)
-      console.log(deletedBlog)
-        res.send('Blog Deleted')
-    } catch (error) {
+      console.log(deletedBlog);
+      res.redirect('/blog')
+    } 
+    catch (error) {
         console.log(error);
         res.status(403).send('Cannot put')
     }
-}))
-
-
-
-
-
-
-
-
-
+});
 module.exports = router;
