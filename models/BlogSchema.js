@@ -7,8 +7,9 @@ const blogSchema = new mongoose.Schema({
     author: {type: String, required: true},
     likes: {type: Number, default: 0},
     sponsored: {type: Boolean, default: false},
-},
-{ timestamps: { Created: 'created_at'} })
+    username: String
+}, 
+{ timestamps: { createdAt: 'created_at' } })
 
 
-module.exports = mongoose.model('blogModel', blogSchema)
+module.exports = mongoose.model('Blog', blogSchema)

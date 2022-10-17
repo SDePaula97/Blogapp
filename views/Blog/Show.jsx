@@ -1,31 +1,19 @@
-const React = require('react');
-const NavBar = require('../components/Navbar')  
+const React = require('react')
 
-class Show extends React.Component {
-    render() {
-        const { BlogModel } = this.props
-        return (
+class ShowBlog extends React.Component {
+    render(){
+        const {blog} = this.props
+        return(
             <div>
-                <head>
-                <link rel="stylesheet" href="/CSS/app.css"/>    
-                </head>
-                <NavBar/> 
-                <h1>Blogs Show Page</h1>
-                <div  style={styles.container}>
-                    <h2>{BlogModel.title}</h2>
-                    <h3>{BlogModel.body}</h3> 
-                    <h3>Written by: {BlogModel.author}</h3>
-                    <a href={`/blog/`}><h4>Back</h4></a>
-                </div>
+                <h1>{blog.title}</h1>
+
+                <p>{blog.body}</p>
+                <h6>Liked by {blog.likes}</h6>
+
+                <h5>Written by: {blog.author}</h5>
             </div>
-        );
+        )
     }
 }
 
-const styles = {
-    container: {
-        justifyContent: "center"
-    }
-}
-
-module.exports = Show
+module.exports = ShowBlog

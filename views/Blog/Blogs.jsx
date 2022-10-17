@@ -1,41 +1,59 @@
 const React = require('react')
 const Navbar = require('../components/Navbar')
 
-class Blogs extends React.Component{
-    render(){
-        const {BlogModel} = this.props
-        console.log(BlogModel);
-        return(
-            <div>
-                <head>
-                    <link rel='stylesheet' href='/CSS/app.css'/>
-                </head>
-                <Navbar />
-           
-            <div>
-                <h1>Blog Posts</h1>
+const React = require("react");
+const NavBar = require('../components/Navbar')
 
-                <section className='blogSec'>
-                    {BlogModel.map((blog) => (
-                    <a href={`/blog/${blog._id}`}>
-                        <div className='blogDiv'>
-                            {blog.title}<br/>
-                            by {blog.author}<br/>
-                            {blog.body}<br/>
-                            
-                            <a href={`/blog/${blog._id}/edit`} className='btn'>Edit</a>
+class Blogs extends React.Component {
+  render() {
+    const { blogs,  mySessionData } = this.props;
+    console.log( mySessionData);
+    return (
+      <div>
+        <head>
+          <link rel="stylesheet" href="/CSS/main.css" />
+        </head>
 
-                            <form action={`/blog/${blog._id}?_method=DELETE`} method= 'post'><input type='submit' value='Delete' /></form>
-                        
-                        </div>
-                    </a>
-                    ))}
-                </section>
+        <NavBar />
+        
+        <h1>Blogs</h1>
+
+        <section style={styles.container}>
+          {blogs.map((blog) => (
+            <div style={styles.wrapper} className="card">
+              <a href={`/blog/${blog._id}`}>
+                {" "}
+                <h2>{blog.title}</h2>
+              </a>
+              <div>
+                <p>{blog.body}</p>
+              </div>
+              <h6>Written by: {blog.author}</h6>
+
+              <div>
+              { mySessionData.username === blog.author ? <a href={`/blog/${blog._id}/edit`}>Edit</a>: null}
+              </div>
             </div>
-            </div>
-        )
-    }
-
+          ))}
+        </section>
+      </div>
+    );
+  }
 }
-
-module.exports= Blogs
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  },
+  wrapper: {
+    padding: "20px",
+    margin: "10px",
+    width: "300px",
+    border: "solid",
+    borderWidth: "2px",
+    borderColor: "black",
+  },
+};
+module.exports = Blogs;
