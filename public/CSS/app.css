@@ -1,24 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap');
-
+/*@import url('https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
 
 body {
   /* background: url(https://images.clipartlogo.com/files/istock/previews/8741/87414357-apple-seamless-pastel-colors-pattern-fruits-texture-background.jpg); */
   margin: 20px;
-  font-family: "Vast Shadow", cursive;
+  /*font-family: "Vast Shadow", cursive;*/
+  font-family: 'Merienda', cursive;
 }
 
 h1 {
-  font-family: "Roboto", sans-serif;
-  /* background: #FF731D; */
-  /* margin:0;
-  margin-bottom: .5em;
-  padding: 1em;
-  color: '#fff' */
-  /* text-align: center; */
+  font-family: 'Merienda', cursive;
+  color:#712B75;
+  font-size: 2.5em;
+}
+h1:hover {
+color:#829460;
+cursor: pointer;
 }
 
+
 a {
-  color: orange;
+  color: #829460;
   text-decoration: none;
   text-shadow: 1px 1px 1px black;
   font-size: 1.5em;
@@ -26,7 +29,7 @@ a {
 }
 
 a:hover {
-  color: ghostwhite;
+  color:#712B75 ;
   cursor: pointer;
 }
 

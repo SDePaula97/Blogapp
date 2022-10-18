@@ -9,8 +9,8 @@ class HomePage extends React.Component {
           <link rel="stylesheet" href="/CSS/app.css" />
         </head>
        <NavBar />
-        <h1>Svetly's Blog</h1> 
-        <img src="images/blog2.jpg" style={styles.headerImg} />
+        <h1>Culturewave</h1> 
+        <img src="images/blog-background2.avif" style={styles.headerImg} />
           <p>
            A space where we can share ideas and thoughts about the current state of our world.
           </p>

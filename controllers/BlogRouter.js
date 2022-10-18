@@ -15,9 +15,10 @@ router.use((req, res, next) => {
 
 // GET: All Blogs
 router.get("/",  async (req, res) => {
+  console.log(res.session);
   try {
     const blogs = await BlogModel.find({});
-    res.render("Blogs/Blogs", { blogs: blogs, loggedInUser: req.session.username });
+    res.render("blogs/Blogs", { blogs: blogs, loggedInUser: req.session.username });
   } catch (error) {
     console.log(error);
     res.status(403).send("Cannot get");

@@ -19,7 +19,7 @@ const styles = {
     container : {
         display:"flex",
         justifyContent: 'space-between',
-        background: 'rgba(193, 235, 187, 0.9)'
+        //background: '#EAF6F6'
     }
 }
 
